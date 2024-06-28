@@ -1,0 +1,9 @@
+-- Insert initial data into system_user table
+INSERT INTO system_user (_id, account, password, name) VALUES
+('00000000-0000-0000-0000-000000000001', 'user1', '$2a$12$tiqXh/8gt2TrLccwBv1IhOGhLAcG1E6XFlraOOvZLB6PQXD88YD7W', 'User One'),
+('00000000-0000-0000-0000-000000000002', 'user2', '$2a$12$K6jmK24VjkOoN2Qh2e2dM.97UUcFc9euAjH8bKcj3S6zmAf4sCXr.', 'User Two');
+
+-- Insert initial data into goods table
+INSERT INTO goods (_id, name, cr_user, up_user) VALUES
+('11111111-1111-1111-1111-111111111111', 'Goods One', '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001'),
+('22222222-2222-2222-2222-222222222222', 'Goods Two', '00000000-0000-0000-0000-000000000002', '00000000-0000-0000-0000-000000000002');
