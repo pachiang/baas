@@ -9,6 +9,4 @@ import java.util.UUID;
 
 public interface SystemUserRepository extends JpaRepository<SystemUser, UUID> {
     SystemUser findOneByAccount(String account);
-
-    Page<SystemUser> findAll(Pageable pageable);
 }

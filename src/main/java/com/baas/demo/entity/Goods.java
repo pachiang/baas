@@ -2,6 +2,7 @@ package com.baas.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,6 +30,7 @@ public class Goods {
     private UUID id;
 
     @Column(name = "name", nullable = false, length = 128)
+    @Size(max = 128, message = "Name length must be less than or equal to 128 characters")
     private String name;
 
     @CreatedBy

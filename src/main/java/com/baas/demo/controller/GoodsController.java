@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class GoodsController {
             @ApiResponse(responseCode = "500", description = "系統錯誤")
     })
     @PostMapping("/goods/add")
-    public ResponseEntity<APIResponse> addGoods(@RequestBody Goods goods) {
+    public ResponseEntity<APIResponse> addGoods(@Valid @RequestBody Goods goods) {
         Goods addedGoods = goodsService.add(goods);
         APIResponse<Goods> apiResponse = APIResponse.<Goods>builder()
                 .status("SUCCESS")
@@ -83,7 +84,7 @@ public class GoodsController {
             @ApiResponse(responseCode = "500", description = "系統錯誤")
     })
     @PutMapping("/goods/{id}")
-    public ResponseEntity<APIResponse> updateGoods(@PathVariable("id") UUID id, @RequestBody Goods goods) {
+    public ResponseEntity<APIResponse> updateGoods(@PathVariable("id") UUID id, @Valid @RequestBody Goods goods) {
         Goods updatedGoods = goodsService.update(id, goods.getName());
         APIResponse<Goods> apiResponse = APIResponse.<Goods>builder()
                 .status("SUCCESS")
