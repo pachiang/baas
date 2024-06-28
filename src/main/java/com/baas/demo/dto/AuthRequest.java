@@ -6,10 +6,10 @@ import lombok.Data;
 
 @Data
 public class AuthRequest {
-    @NotNull(message = "Account is required")
+
     @NotBlank(message = "Account is mandatory")
     private String account;
-    @NotNull(message = "Account is required")
-    @NotBlank(message = "Account is mandatory")
+
+    @NotBlank(message = "Password is mandatory")
     private String password;
 }
