@@ -17,8 +17,8 @@
    首先，將此專案 clone 到本地端：
 
    ```sh
-   git clone https://github.com/your-repo/your-project.git
-   cd your-project
+   git clone https://github.com/pachiang/baas.git
+   cd baas
    ```
 
 2. **確認資料庫連線資訊**
@@ -76,8 +76,8 @@
    首先，將此專案 clone 到本地端：
 
    ```sh
-   git clone https://github.com/your-repo/your-project.git
-   cd your-project
+   git clone https://github.com/pachiang/baas.git
+   cd baas
    ```
 
 2. **運行 Docker Compose**
