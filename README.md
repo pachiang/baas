@@ -85,7 +85,7 @@
    執行以下命令來啟動 Docker 容器：
 
    ```sh
-   docker-compose up -d
+   docker compose up -d
    ```
 
    此命令將會自動建立並啟動包含 PostgreSQL 資料庫和 Spring Boot 應用程式的 Docker 容器。
@@ -95,7 +95,7 @@
    執行以下命令檢查服務是否正常運行：
 
    ```sh
-   docker-compose ps
+   docker compose ps
    ```
 
 以上兩種方法都能成功部署此專案，請根據您的需求選擇適合的方法。若有任何問題，請隨時聯絡我們。
