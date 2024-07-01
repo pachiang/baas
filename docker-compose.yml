@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_DB: baas_demo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "15432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: springboot-app
+    ports:
+      - "18081:18081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/baas_demo
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1234
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
