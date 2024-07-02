@@ -1,6 +1,8 @@
 package com.baas.demo.filter;
 
 import com.baas.demo.constant.SecurityConstant;
+import com.baas.demo.entity.SystemUser;
+import com.baas.demo.repository.SystemUserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -28,10 +30,12 @@ import org.springframework.util.AntPathMatcher;
 @Slf4j
 @Component
 public class JWTTokenValidatorFilter extends OncePerRequestFilter {
+    private final SystemUserRepository systemUserRepository;
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
     private final HandlerExceptionResolver exceptionResolver;
-    public JWTTokenValidatorFilter(@Qualifier("handlerExceptionResolver") HandlerExceptionResolver exceptionResolver) {
+    public JWTTokenValidatorFilter(@Qualifier("handlerExceptionResolver") HandlerExceptionResolver exceptionResolver, SystemUserRepository systemUserRepository) {
         this.exceptionResolver = exceptionResolver;
+        this.systemUserRepository = systemUserRepository;
     }
 
     @Override
@@ -45,7 +49,8 @@ public class JWTTokenValidatorFilter extends OncePerRequestFilter {
                     .parseClaimsJws(jwt)
                     .getBody();
             String account = String.valueOf(claims.get("account"));
-            Authentication auth = new UsernamePasswordAuthenticationToken(account, null, new ArrayList<>());
+            SystemUser systemUser = systemUserRepository.findOneByAccount(account);
+            Authentication auth = new UsernamePasswordAuthenticationToken(systemUser, null, new ArrayList<>());
             SecurityContextHolder.getContext().setAuthentication(auth);
             filterChain.doFilter(request, response);
         } catch (Exception ex) {

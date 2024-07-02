@@ -6,6 +6,8 @@
   
 3. 資料庫中既有使用者1帳號與密碼為user1, password1；以及使用者2帳號與密碼為user2, password2。 
 
+4. 使用 postgresql 13 或 postgresql 14
+
 # 部署指南
 
 以下是如何部署此專案的兩種方法：

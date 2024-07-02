@@ -14,19 +14,12 @@ import java.util.Optional;
 @Slf4j
 public class AuditorProvider implements AuditorAware<SystemUser> {
 
-    private final SystemUserRepository systemUserRepository;
-
-    public AuditorProvider(SystemUserRepository systemUserRepository) {
-        this.systemUserRepository = systemUserRepository;
-    }
-
     @Override
     public Optional<SystemUser> getCurrentAuditor() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated()) {
             return Optional.empty();
         }
-        String username = authentication.getName();
-        return Optional.ofNullable(systemUserRepository.findOneByAccount(username));
+        return Optional.ofNullable((SystemUser) authentication.getPrincipal());
     }
 }
